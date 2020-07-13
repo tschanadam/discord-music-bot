@@ -6,7 +6,7 @@ module.exports = {
 		const errNoVC = new Discord.messageEmbed()
 	.setColor('#0099ff')
 	.setTitle('An error was encountered:')
-	.setDescription('Please comnect to a voice channel to execute this command!')
+	.setDescription('Please connect to a voice channel to execute this command!')
 		const noEligibleSongs = new Discord.messageEmbed()
 	.setColor('#0099ff')
 	.setTitle('An error was encountered:')
