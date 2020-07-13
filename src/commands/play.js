@@ -8,8 +8,18 @@ module.exports = {
 	args: true,
 	cooldown: 5,
 	async execute(message, args) {
+		const playErrNoConnect = new Discord.MessageEmbed()
+	.setColor('#7289da')
+	.setTitle('There was an error:')
+	.setDescription('You need to connect to a voice channel first.')
+	.setTimestamp()
+		const songQueueAdd = new Discord.MessageEmbed()
+	.setColor('#7289da')
+	.setTitle('Success! I added the below song to the queue')
+	.setDescription('**${song.title}**')
+	.setTimestamp()
 		const { channel } = message.member.voice;
-		if (!channel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
+		if (!channel) return message.channel.send('playErrNoConnect);
 		const permissions = channel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT')) return message.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
 		if (!permissions.has('SPEAK')) return message.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
@@ -25,7 +35,7 @@ module.exports = {
 		if (serverQueue) {
 			serverQueue.songs.push(song);
 			console.log(serverQueue.songs);
-			return message.channel.send(`✅ **${song.title}** has been added to the queue!`);
+			return message.channel.send(songQueueAdd);
 		}
 
 		const queueConstruct = {
@@ -37,8 +47,7 @@ module.exports = {
 			playing: true
 		};
 		message.client.queue.set(message.guild.id, queueConstruct);
-		queueConstruct.songs.push(song);
-
+		queueConstruct.songs.p
 		const play = async song => {
 			const queue = message.client.queue.get(message.guild.id);
 			if (!song) {
